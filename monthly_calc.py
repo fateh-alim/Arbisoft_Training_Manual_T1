@@ -2,10 +2,10 @@
 from weatherman import Read_Parser
 
 class Monthly_Calc(Read_Parser):
+    '''SOLVING THE SECOND PART OF TASK 1'''
         
     def __init__(self,dataset,date):
-        '''SOLVING THE SECOND PART OF TASK 1'''
-        
+
         self.dataset = dataset
         self.date = date
 
