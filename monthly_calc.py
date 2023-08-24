@@ -4,10 +4,14 @@ from weatherman import Read_Parser
 class Monthly_Calc(Read_Parser):
         
     def __init__(self,dataset,date):
+        '''SOLVING THE SECOND PART OF TASK 1'''
+        
         self.dataset = dataset
         self.date = date
 
     def max_temp(self):
+            '''getting the Average maximum temperature in a set month'''
+
             month = self.date[5:]
             avg_max_temp = 0
             check = 0
@@ -30,6 +34,8 @@ class Monthly_Calc(Read_Parser):
           
         
     def min_temp(self):
+            '''getting the Average minimum temperature in a set month'''
+
             month = self.date[5:]
             avg_min_temp = 0
             check = 0
@@ -51,6 +57,8 @@ class Monthly_Calc(Read_Parser):
             print("Lowest Average: "+ str(self.dataset["Mean TemperatureC"][avg_min_temp]) + "C" )
             
     def humidity(self):
+            '''calculating the Average mean humidity in a set month'''
+
             month = self.date[5:]
             avg_humidity = 0
             avg_humidity_count = 0

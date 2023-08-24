@@ -6,7 +6,9 @@ from yearly_calc import Yearly_Calc
 from monthly_calc import Monthly_Calc
 from temp_charts import Temp_Chart
 
-def main():         
+def main():  
+    ''' This is he main function to run the code '''   
+        
     arg = sys.argv
 
     dir_path = arg[1]

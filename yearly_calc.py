@@ -3,12 +3,15 @@ import calendar
 from weatherman import Read_Parser
 
 class Yearly_Calc(Read_Parser):
-        
+    '''SOLVING THE FIRST PART OF TASK 1'''
+
     def __init__(self,dataset, years):
         self.dataset = dataset
         self.years = years
 
     def max_temp(self):
+        '''getting the maximum temperature and the date in a set year'''
+
         years = self.years
         max_temp = 0
         check = 0
@@ -33,6 +36,8 @@ class Yearly_Calc(Read_Parser):
 
 
     def min_temp(self):
+        '''getting the mminimum temperature and the date in a set year'''
+
         years = self.years
         min_temp = 0
         check = 0
@@ -57,6 +62,8 @@ class Yearly_Calc(Read_Parser):
     
 
     def humidity(self):
+        '''getting the most humid day in a set year'''
+        
         years = self.years
         humidity = 0
         check = 0

@@ -3,6 +3,8 @@ import sys
 import calendar
 
 class Read_Parser:
+    '''creating the parent class containing the base database of weather files'''
+
     def __init__(self):
         self.dataset = {}
 
@@ -11,6 +13,7 @@ class Read_Parser:
 
     def parse_file(self,dir_path):
         ''' combining and converting the weatherfiles data into a single dictionary  '''
+        
         file_names = os.listdir(dir_path)
         txt_files = [file for file in file_names if file.endswith(".txt")]
         count = 0

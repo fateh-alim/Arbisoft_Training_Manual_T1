@@ -3,13 +3,16 @@ import calendar
 from weatherman import Read_Parser
 
 class Temp_Chart(Read_Parser):
-        
+    '''SOLVING THE THIRD & FIFTH PART OF TASK 1'''
+
     def __init__(self, dataset, date):
         self.dataset = dataset
         self.date = date 
         
 
     def days_in_month(self, month):
+            '''finding out the number of day in a specific month, used for the loop for the chart'''
+
             days_in_month = 0
             
             if month == "2":
@@ -24,6 +27,8 @@ class Temp_Chart(Read_Parser):
                  
 
     def temp_chart_calc(self, line):
+            '''calculating the bar charts variables '''
+
             month = self.date[5:]
             year = self.date[:4]
             check = 0
@@ -71,13 +76,18 @@ class Temp_Chart(Read_Parser):
                         break
 
     def print_2line(self, j, max_temp_sign, min_temp_sign, i):
+        '''the unique printing statment for task 1 part.3'''
+
         print(j, f"\033[91m {max_temp_sign}\033[00m", self.dataset["Max TemperatureC"][i] + "C")
         print(j, f"\033[94m {min_temp_sign}\033[00m", self.dataset["Min TemperatureC"][i] + "C")  
         print("\n")   
 
     def print_1line(self, j, max_temp_sign, min_temp_sign, i):
+        '''the unique printing statment for task 1 part.5'''
+
         print(j, f"\033[91m {max_temp_sign}\033[00m\033[94m {min_temp_sign}\033[00m"
                , self.dataset["Min TemperatureC"][i] + "C"
                , self.dataset["Max TemperatureC"][i] + "C")  
         print("\n")
+
     
