@@ -1,47 +1,48 @@
 import os
 import sys
-import calendar
+from read_data import ReadParser
+from yearly_calc import YearlyCalc
+from monthly_calc import MonthlyCalc
+from temp_charts import TempChart
 
-class Read_Parser:
-    '''creating the parent class containing the base database of weather files'''
-
-    def __init__(self):
-        self.dataset = {}
-
-    def database(self):
-        return self.database
-
-    def parse_file(self,dir_path):
-        ''' combining and converting the weatherfiles data into a single dictionary  '''
+def main():  
+    ''' This is he main function to run the code '''   
         
-        file_names = os.listdir(dir_path)
-        txt_files = [file for file in file_names if file.endswith(".txt")]
-        count = 0
+    arg = sys.argv
 
-        for txt_file in txt_files:
-            file_path = os.path.join(dir_path, txt_file)
-            with open(file_path, "r") as file:
-                data = file.readlines()
-                
-            for line in data:
-                line_lis = line.strip().split(',')
-                
-                if count == 0:
-                    count = count + 1
-                    labels = []
-                    for i in line_lis:
-                        labels.append(i)
-                        self.dataset[i] = []  
-                else:
-                    for i in range(len(line_lis)):
-                        if line_lis[i] == "PKT":
-                            line_lis[i] = "PKST"
-                        if line_lis[i] not in labels:
-                            
-                            if line_lis[i] == '':
-                                self.dataset[labels[i]].append(None)
-                            else:
-                                self.dataset[labels[i]].append(line_lis[i])                   
+    dir_path = arg[1]
+    if len(sys.argv) == 5 or arg[2] == "-c" or arg[4] == "-a" or arg[6] == "-e":
+        if not os.path.exists(dir_path):
+            print(f"No file found at: {dir_path}")
+            return
+    else:
+        print("Imporper format used.")
+        return
         
-        return self.dataset
+    parser = ReadParser()
+    dataset = parser.parse_file(dir_path)
 
+    print("\n")
+    year_calc = YearlyCalc(dataset, str(arg[3]))
+    year_calc.yearly_calc("max_temp")
+    year_calc.yearly_calc("min_temp")
+    year_calc.yearly_calc("humidity")
+
+    print("\n")
+    monthly_year = MonthlyCalc(dataset, str(arg[5]))
+    monthly_year.monthly_calc("max_temp")
+    monthly_year.monthly_calc("min_temp")
+    monthly_year.monthly_calc("humidity")
+
+    print("\n")
+    temp_charts = TempChart(dataset, str(arg[7]))
+    temp_charts.temp_chart_calc(1)
+
+    print("\n")
+    temp_charts.temp_chart_calc(2)
+
+
+
+if __name__ == "__main__":
+    main()
+    
